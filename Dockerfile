@@ -1,5 +1,5 @@
 FROM httpd:alpine
-ENV APP_DIR "/data"
+ENV APP_DIR "/var/www"
 
 # Memory Limit
 RUN echo "memory_limit=-1" > $PHP_INI_DIR/conf.d/memory-limit.ini
