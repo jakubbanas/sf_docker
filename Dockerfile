@@ -34,4 +34,3 @@ RUN docker-php-ext-install \
 VOLUME ["$APP_DIR"]
 WORKDIR "$APP_DIR"
 EXPOSE 80
-CMD ["php", "bin/console", "server:run", "0.0.0.0:80"]
