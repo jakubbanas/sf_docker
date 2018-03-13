@@ -2,6 +2,7 @@ version: '3'
 
 services:
 
+  # main service
   api:
     build: .
     ports:
@@ -9,18 +10,21 @@ services:
     volumes:
       - app-sync:/data
 
+  # MYSQL database
   db:
     image: percona
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
 
+  # simple database management GUI
   adminer:
     image: adminer
     restart: always
     ports:
       - 8081:8080
 
+# files mapping fix for MacOS
 volumes:
   app-sync:
     external: true
