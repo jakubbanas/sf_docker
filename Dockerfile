@@ -1,5 +1,4 @@
-FROM php:cli-alpine
-
+FROM httpd:alpine
 ENV APP_DIR "/data"
 
 # Memory Limit
