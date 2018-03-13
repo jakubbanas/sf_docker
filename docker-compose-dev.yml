@@ -23,7 +23,6 @@ services:
     restart: always
     ports:
       - 8081:8080
-
-# files mapping fix for MacOS
+      
 volumes:
   .
