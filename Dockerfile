@@ -28,7 +28,8 @@ RUN apk add --no-cache \
 
 RUN docker-php-ext-install \
     pdo pdo_mysql \
-    pcntl
+    pcntl \
+    # here new packages
 
 # Set up the volumes and working directory
 VOLUME ["$APP_DIR"]
