@@ -6,9 +6,9 @@ services:
   api:
     build: .
     ports:
-      - 8080:80
+      - 8088:80
     volumes:
-      - app-sync:/var/www
+      - ./html:/var/www/html
 
   # MYSQL database
   db:
@@ -18,11 +18,8 @@ services:
       MYSQL_ROOT_PASSWORD: root
 
   # simple database management GUI
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - 8081:8080
-      
-volumes:
-  .
+  # adminer:
+  #   image: adminer
+  #   restart: always
+  #   ports:
+  #     - 8081:8080
