@@ -1,6 +1,5 @@
-FROM php:cli-alpine
-
-ENV APP_DIR "/data"
+FROM httpd:alpine
+ENV APP_DIR "/var/www"
 
 # Memory Limit
 RUN echo "memory_limit=-1" > $PHP_INI_DIR/conf.d/memory-limit.ini
@@ -29,10 +28,10 @@ RUN apk add --no-cache \
 
 RUN docker-php-ext-install \
     pdo pdo_mysql \
-    pcntl
+    pcntl \
+    # here new packages
 
 # Set up the volumes and working directory
 VOLUME ["$APP_DIR"]
 WORKDIR "$APP_DIR"
 EXPOSE 80
-CMD ["php", "bin/console", "server:run", "0.0.0.0:80"]

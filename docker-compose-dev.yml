@@ -8,7 +8,7 @@ services:
     ports:
       - 8080:80
     volumes:
-      - app-sync:/data
+      - .:/var/www
 
   # MYSQL database
   db:
@@ -23,8 +23,3 @@ services:
     restart: always
     ports:
       - 8081:8080
-
-# files mapping fix for MacOS
-volumes:
-  app-sync:
-    external: true
