@@ -1,12 +1,5 @@
-FROM php:cli-alpine
-
-ENV APP_DIR "/data"
-
-# Memory Limit
-RUN echo "memory_limit=-1" > $PHP_INI_DIR/conf.d/memory-limit.ini
-
-# Time Zone
-RUN echo "date.timezone=${PHP_TIMEZONE:-UTC}" > $PHP_INI_DIR/conf.d/date_timezone.ini
+FROM php:apache
+ENV APP_DIR "/var/www"
 
 # Allow Composer to be run as root
 ENV COMPOSER_ALLOW_SUPERUSER 1
@@ -22,17 +15,6 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
 
 RUN mv composer.phar /bin/composer
 
-# install phpdbg
-RUN apk add --no-cache \
-    php7-phpdbg \
-    bash
-
-RUN docker-php-ext-install \
-    pdo pdo_mysql \
-    pcntl
-
-# Set up the volumes and working directory
-VOLUME ["$APP_DIR"]
+# Set up working directory
 WORKDIR "$APP_DIR"
 EXPOSE 80
-CMD ["php", "bin/console", "server:run", "0.0.0.0:80"]
